@@ -7,9 +7,9 @@
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#71717a">
+    <meta name="theme-color" content="#707070">
     <link class="sello-medbasha" data-value="medbasha" />
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pcyBUdXJub3MgVGFtYm9yIiwKICAic2hvcnRfbmFtZSI6ICJNQlAgUFJPIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZjE3MmEiLAogICJ0aGVtZV9jb2xvciI6ICIjNzE3MTdhIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMzQ0OC8zNDQ4MzM5LnBuZyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIgogICAgfQogIF0KfQ==">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pcyBUdXJub3MgVGFtYm9yIiwKICAic2hvcnRfbmFtZSI6ICJNQlAgUFJPIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZjE3MmEiLAogICJ0aGVtZV9jb2xvciI6ICIjNzA3MDcwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMzQ0OC8zNDQ4MzM5LnBuZyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIgogICAgfQogIF0KfQ==">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3448/3448339.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -49,6 +49,7 @@
 </head>
 <body :style="'font-size: ' + settings.fontSize + 'px;'">
 
+    <!-- SISTEMA DE NOTIFICACIONES (TOASTS) -->
     <div class="fixed top-4 left-0 w-full flex justify-center z-[100] pointer-events-none" x-show="toast.visible" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-5" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-5" x-cloak>
         <div class="glass-card px-5 py-3 rounded-full flex items-center gap-3 shadow-2xl border" :class="toast.isError ? 'border-red-500/50 bg-red-900/30' : 'border-green-500/50 bg-green-900/30'">
             <span class="text-lg" x-text="toast.isError ? '⚠️' : '✅'"></span>
@@ -56,6 +57,7 @@
         </div>
     </div>
 
+    <!-- PANTALLA 1: INICIO -->
     <div x-show="screen === 1" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak class="p-4 max-w-md mx-auto pb-24">
         <header class="flex justify-between items-center mb-6">
             <div>
@@ -115,6 +117,7 @@
         </button>
     </div>
 
+    <!-- PANTALLA 2: REGISTRO DE JORNADA -->
     <div x-show="screen === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak class="p-4 max-w-md mx-auto pb-44">
         <header class="flex items-center gap-4 mb-6">
             <button @click="volverAlInicio()" class="p-2 bg-slate-800 rounded-full active:scale-90 transition"><i data-lucide="arrow-left"></i></button>
@@ -162,13 +165,13 @@
             </div>
 
             <div class="grid grid-cols-3 gap-2 mt-6">
-                <button @click="form.comida = !form.comida; manualComida = true; guardarBorrador()" 
+                <button @click="manualComida = true; form.comida = !form.comida; guardarBorrador()" 
                         :class="form.comida ? (autoComidaCalc ? 'bg-green-600' : 'animate-amber') : 'bg-slate-800 opacity-40'" 
                         class="p-4 rounded-2xl flex flex-col items-center gap-1 font-black transition-all active:scale-95 border border-transparent">
                     <i data-lucide="utensils" class="w-4 h-4"></i><span class="text-[9px] uppercase">Comida</span>
                 </button>
 
-                <button @click="form.cena = !form.cena; manualCena = true; guardarBorrador()" 
+                <button @click="manualCena = true; form.cena = !form.cena; guardarBorrador()" 
                         :class="form.cena ? (autoCenaCalc ? 'bg-green-600' : 'animate-amber') : 'bg-slate-800 opacity-40'" 
                         class="p-4 rounded-2xl flex flex-col items-center gap-1 font-black transition-all active:scale-95 border border-transparent">
                     <i data-lucide="moon" class="w-4 h-4"></i><span class="text-[9px] uppercase">Cena</span>
@@ -205,6 +208,7 @@
         </div>
     </div>
 
+    <!-- PANTALLA 3: NÓMINA Y RESUMEN SEMANAL -->
     <div x-show="screen === 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak class="p-4 max-w-md mx-auto pb-32">
         <header class="flex justify-between items-center mb-4">
             <button @click="screen = 1" class="p-2 bg-slate-800 rounded-full active:scale-90 transition"><i data-lucide="arrow-left"></i></button>
@@ -302,6 +306,7 @@
         </div>
     </div>
 
+    <!-- PANTATTAN 4: CONFIGURACIÓN -->
     <div x-show="screen === 4" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak class="p-4 max-w-md mx-auto pb-24">
         <header class="flex items-center gap-4 mb-8">
             <button @click="screen = 1" class="p-2 bg-slate-800 rounded-full active:scale-90 transition"><i data-lucide="arrow-left"></i></button>
@@ -309,6 +314,7 @@
         </header>
 
         <div class="space-y-6">
+            <!-- BOTÓN DE ESTADO DE NUBE INTELIGENTE -->
             <button @click="notificar(esVip() ? 'Estás conectado a la nube privada' : 'Modo local. No se suben datos a la nube.', false)" 
                     class="w-full glass-card p-5 rounded-3xl flex items-center justify-between border-l-4 transition" 
                     :class="esVip() ? 'border-blue-500' : 'border-slate-500'">
@@ -364,6 +370,7 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT Y CÁLCULOS -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyC7b6_T0ze2HgXiYHfvUeL12JSXE7ZKogc",
@@ -390,9 +397,9 @@
                 fechaSeleccionada: '', 
                 timeNow: '00:00:00', 
                 cicloLabel: '',
-                palette:['#71717a', '#3b82f6', '#f59e0b', '#10b981', '#ef4444'], 
+                palette:['#707070', '#3b82f6', '#f59e0b', '#10b981', '#ef4444'], 
                 
-                settings: { fontSize: 16, colorMaestro: '#71717a', sheetUrl: '', vipKey: '' },
+                settings: { fontSize: 16, colorMaestro: '#707070', sheetUrl: '', vipKey: '' },
                 
                 form: { id: null, esPartida: false, bus1: '', hE1: '', hS1: '', kmI1: '', kmF1: '', bus2: '', hE2: '', hS2: '', kmI2: '', kmF2: '', comida: false, cena: false, festivo: false },
                 res: { hTotal: '06:00', kmTotal: 0 },
@@ -610,13 +617,11 @@
                     let autoCena = false;
                     let evaluarTramo = null;
 
-                    // NUEVA LÓGICA DE DIETAS CORREGIDA POR EL CONDUCTOR
                     if (!this.form.esPartida) {
-                        if (mIni1 !== null && mFin1 !== null) {
+                        if (e1 !== null && s1 !== null) {
                             evaluarTramo = { duracionMin: m1, finMin: s1 };
                         }
                     } else {
-                        // En turnos partidos se evalúa exclusivamente el tramo más largo de jornada continua
                         if (m1 >= m2 && m1 > 0) {
                             evaluarTramo = { duracionMin: m1, finMin: s1 };
                         } else if (m2 > m1) {
@@ -629,18 +634,18 @@
                         const horasTrabajadas = duracionMin / 60;
 
                         // 1. Reglas de Mañana (Comida)
-                        if (horasTrabajadas === 9 && finMin === 900) autoComida = true; // 9h y termina a las 15:00
-                        if (horasTrabajadas >= 6 && finMin === 930) autoComida = true; // >=6h y termina a las 15:30
+                        if (horasTrabajadas === 9 && finMin === 900) autoComida = true; 
+                        if (horasTrabajadas >= 6 && finMin === 930) autoComida = true; 
 
                         // 2. Reglas de Tarde (Cena)
-                        const esFinCenaOmasTarde = (finMin >= 1380 || finMin <= 360); // 23:00 o más tarde / de madrugada
-                        if (horasTrabajadas >= 6 && esFinCenaOmasTarde) autoCena = true; // >=6h (incluye 6, 7, 8, 9...) y termina >= 23:00
+                        const esFinCenaOmasTarde = (finMin >= 1380 || finMin <= 360); 
+                        if (horasTrabajadas >= 6 && esFinCenaOmasTarde) autoCena = true; 
                     }
 
                     this.autoComidaCalc = autoComida;
                     this.autoCenaCalc = autoCena;
 
-                    // Si el conductor no lo fuerza manualmente, la app sigue la automatización exacta
+                    // Si el usuario ha tocado manualmente el botón, evitamos sobrescribir el estado calculando de nuevo
                     if (!this.manualComida) { this.form.comida = autoComida; }
                     if (!this.manualCena) { this.form.cena = autoCena; }
                 },

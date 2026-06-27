@@ -306,7 +306,7 @@
         </div>
     </div>
 
-    <!-- PANTATTAN 4: CONFIGURACIÓN -->
+    <!-- PANTALLA 4: CONFIGURACIÓN -->
     <div x-show="screen === 4" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak class="p-4 max-w-md mx-auto pb-24">
         <header class="flex items-center gap-4 mb-8">
             <button @click="screen = 1" class="p-2 bg-slate-800 rounded-full active:scale-90 transition"><i data-lucide="arrow-left"></i></button>
@@ -315,7 +315,7 @@
 
         <div class="space-y-6">
             <!-- BOTÓN DE ESTADO DE NUBE INTELIGENTE -->
-            <button @click="notificar(esVip() ? 'Estás conectado a la nube privada' : 'Modo local. No se suben datos a la nube.', false)" 
+            <button @click="notificar(esVip() ? 'Estás conectado a la nube privada' : 'Modo local. Introduce clave válida.', false)" 
                     class="w-full glass-card p-5 rounded-3xl flex items-center justify-between border-l-4 transition" 
                     :class="esVip() ? 'border-blue-500' : 'border-slate-500'">
                 <div class="flex items-center gap-3">
@@ -340,6 +340,24 @@
                     <i data-lucide="file-text" class="text-red-500 w-5 h-5"></i>
                     <span class="font-black uppercase text-[9px]">Mes en PDF</span>
                 </button>
+            </div>
+
+            <!-- ENTRADAS DE CREDENCIALES SEGURAS EN LOCALSTORAGE -->
+            <div class="glass-card p-5 rounded-3xl border-l-4 border-blue-500 space-y-4">
+                <label class="text-[10px] font-black text-blue-500 uppercase block">Configuración Firebase Privada</label>
+                <div>
+                    <span class="text-[8px] text-slate-400 block mb-1">API KEY</span>
+                    <input type="text" x-model="settings.fbApiKey" @change="saveSett()" placeholder="AIzaSy..." class="bg-slate-900 border border-white/10 p-2 rounded-xl font-mono text-[9px] w-full text-slate-300 outline-none">
+                </div>
+                <div>
+                    <span class="text-[8px] text-slate-400 block mb-1">DATABASE URL</span>
+                    <input type="text" x-model="settings.fbDbUrl" @change="saveSett()" placeholder="https://..." class="bg-slate-900 border border-white/10 p-2 rounded-xl font-mono text-[9px] w-full text-slate-300 outline-none">
+                </div>
+                <div>
+                    <span class="text-[8px] text-slate-400 block mb-1">PROJECT ID</span>
+                    <input type="text" x-model="settings.fbProjectId" @change="saveSett()" placeholder="misturnos-..." class="bg-slate-900 border border-white/10 p-2 rounded-xl font-mono text-[9px] w-full text-slate-300 outline-none">
+                </div>
+                <button @click="conectarFirebaseManual()" class="w-full mt-2 bg-blue-600/40 p-2 rounded-xl font-black text-[9px] uppercase active:scale-95 transition">Vincular Base de Datos</button>
             </div>
 
             <div class="glass-card p-5 rounded-3xl border-l-4 border-green-500">
@@ -372,20 +390,7 @@
 
     <!-- JAVASCRIPT Y CÁLCULOS -->
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyC7b6_T0ze2HgXiYHfvUeL12JSXE7ZKogc",
-            authDomain: "misturnos-fe3ea.firebaseapp.com",
-            databaseURL: "https://misturnos-fe3ea-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "misturnos-fe3ea",
-            storageBucket: "misturnos-fe3ea.firebasestorage.app",
-            messagingSenderId: "1029095925443",
-            appId: "1:1029095925443:web:873240d85ac5160f392476"
-        };
-
-        if (!firebase.apps.length) { 
-            firebase.initializeApp(firebaseConfig); 
-        }
-        const db = firebase.database();
+        let db = null;
 
         function appBus() {
             return {
@@ -399,7 +404,7 @@
                 cicloLabel: '',
                 palette:['#707070', '#3b82f6', '#f59e0b', '#10b981', '#ef4444'], 
                 
-                settings: { fontSize: 16, colorMaestro: '#707070', sheetUrl: '', vipKey: '' },
+                settings: { fontSize: 16, colorMaestro: '#707070', sheetUrl: '', vipKey: '', fbApiKey: '', fbDbUrl: '', fbProjectId: '' },
                 
                 form: { id: null, esPartida: false, bus1: '', hE1: '', hS1: '', kmI1: '', kmF1: '', bus2: '', hE2: '', hS2: '', kmI2: '', kmF2: '', comida: false, cena: false, festivo: false },
                 res: { hTotal: '06:00', kmTotal: 0 },
@@ -426,8 +431,8 @@
                     this.calcularTotales();
                     setInterval(() => this.updateClock(), 1000); 
                     
-                    if (this.esVip()) {
-                        this.iniciarSyncAutomatico();
+                    if (this.settings.fbApiKey && this.settings.fbDbUrl) {
+                        this.conectarFirebaseManual();
                     }
 
                     const borradorGuardado = localStorage.getItem('bus_borrador_seguridad');
@@ -446,15 +451,34 @@
                     this.actualizarIconos();
                 },
 
+                conectarFirebaseManual() {
+                    if (!this.settings.fbApiKey || !this.settings.fbDbUrl) return;
+                    try {
+                        if (!firebase.apps.length) {
+                            firebase.initializeApp({
+                                apiKey: this.settings.fbApiKey,
+                                authDomain: `${this.settings.fbProjectId}.firebaseapp.com`,
+                                databaseURL: this.settings.fbDbUrl,
+                                projectId: this.settings.fbProjectId,
+                                storageBucket: `${this.settings.fbProjectId}.appspot.com`
+                            });
+                        }
+                        db = firebase.database();
+                        this.iniciarSyncAutomatico();
+                        this.notificar("Firebase Conectado");
+                    } catch (e) {
+                        this.notificar("Error de Configuración", true);
+                    }
+                },
+
                 esVip() {
                     return this.settings.vipKey === 'bashaVIP';
                 },
 
                 checkVip() {
                     this.saveSett();
-                    if (this.esVip() && !this.firebaseIniciado) {
-                        this.iniciarSyncAutomatico();
-                        this.notificar("¡Bienvenido! Nube Conectada", false);
+                    if (this.esVip()) {
+                        this.notificar("¡Sincronización VIP Asegurada!", false);
                     }
                 },
 
@@ -466,12 +490,13 @@
                 },
 
                 iniciarSyncAutomatico() {
-                    if (this.firebaseIniciado) return;
+                    if (!db || this.firebaseIniciado) return;
                     this.firebaseIniciado = true;
 
                     db.ref('jornadas').on('child_added', (snapshot) => {
                         const item = snapshot.val();
-                        if(!this.historial.find(h => h.id === item.id)) {
+                        const existente = this.historial.find(h => h.id === item.id || h.fecha === item.fecha);
+                        if(!existente) {
                             this.historial.push(item);
                             this.historial.sort((a,b) => b.id - a.id);
                             this.saveHist();
@@ -481,7 +506,7 @@
 
                     db.ref('jornadas').on('child_changed', (snapshot) => {
                         const updatedItem = snapshot.val();
-                        const idx = this.historial.findIndex(h => h.id === updatedItem.id);
+                        const idx = this.historial.findIndex(h => h.id === updatedItem.id || h.fecha === updatedItem.fecha);
                         if(idx > -1) {
                             this.historial[idx] = updatedItem;
                             this.saveHist();
@@ -633,11 +658,9 @@
                         const { duracionMin, finMin } = evaluarTramo;
                         const horasTrabajadas = duracionMin / 60;
 
-                        // 1. Reglas de Mañana (Comida)
                         if (horasTrabajadas === 9 && finMin === 900) autoComida = true; 
                         if (horasTrabajadas >= 6 && finMin === 930) autoComida = true; 
 
-                        // 2. Reglas de Tarde (Cena)
                         const esFinCenaOmasTarde = (finMin >= 1380 || finMin <= 360); 
                         if (horasTrabajadas >= 6 && esFinCenaOmasTarde) autoCena = true; 
                     }
@@ -645,7 +668,6 @@
                     this.autoComidaCalc = autoComida;
                     this.autoCenaCalc = autoCena;
 
-                    // Si el usuario ha tocado manualmente el botón, evitamos sobrescribir el estado calculando de nuevo
                     if (!this.manualComida) { this.form.comida = autoComida; }
                     if (!this.manualCena) { this.form.cena = autoCena; }
                 },
@@ -653,6 +675,7 @@
                 guardarJornada() {
                     if(!this.form.bus1) return this.notificar("Falta el número de BUS", true);
                     if(this.form.hS1 && !this.form.hE1) return this.notificar("Hora de fin sin inicio", true);
+                    if(this.form.esPartida && this.form.hS2 && !this.form.hE2) return this.notificar("Tramo 2: Fin sin inicio", true);
                     if(this.errorKm) return this.notificar("Error en los Kilómetros", true);
 
                     const reg = {
@@ -668,15 +691,17 @@
                         creadoEn: new Date().toISOString()
                     };
                     
-                    if (this.esVip()) {
+                    if (db) {
                         db.ref('jornadas/' + reg.id).set(reg)
                             .then(() => {
-                                this.notificar("Jornada Guardada en la Nube");
+                                this.notificar("¡Sincronizado en la Nube!");
                                 if(this.settings.sheetUrl) this.sincronizarConSheets([reg], true);
                             })
-                            .catch(e => this.notificar("Error de red", true));
+                            .catch(e => {
+                                this.notificar("Guardado local (Sin red remota)", false);
+                            });
                     } else {
-                        this.notificar("Jornada Guardada (Local)");
+                        this.notificar("Guardado local (Configura Firebase)", false);
                     }
 
                     const idx = this.historial.findIndex(h => h.fecha === this.fechaSeleccionada);
@@ -902,9 +927,7 @@
                     if(confirm('¿Borrar este registro?')) { 
                         this.historial = this.historial.filter(h => h.id !== id); 
                         this.saveHist(); 
-                        if (this.esVip()) {
-                            db.ref('jornadas/' + id).remove();
-                        }
+                        if (db) db.ref('jornadas/' + id).remove();
                         this.calcularTotales(); 
                         this.notificar("Registro eliminado");
                     } 

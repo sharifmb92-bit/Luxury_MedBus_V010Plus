@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#707070">
     <link class="sello-medbasha" data-value="medbasha" />
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pcyBUdXJub3MgVGFtYm9yIiwKICAic2hvcnRfbmFtZSI6ICJNQlAgUFJPIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZjE3MmEiLAogICJ0aGVtZV9jb2xvciI6ICIjNzA3MDcwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMzQ0OC8zNDQ4MzM5LnBuZyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIgogICAgfQogIF0KfQ==">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pcyBUdXJub3MgVGFtYm9yIiwKICAic2hvcnRfbmFtZSI6ICJNQlAgUFJPIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZjE3MmEiLAogICJ0aGVtZV9jb2xvciI6ICIjNzA3MDcwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMzQ0OC8zNDQ4MzM5LnBuZyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICICXR5cGUiOiAiaW1hZ2UvcG5nIgogICB9CiAgXQp9")">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3448/3448339.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,7 +38,6 @@
         .input-dark:focus { border-color: #3b82f6; }
         input[type="time"].input-dark { font-size: 1.6rem !important; font-weight: 900; }
         input[type="text"].input-dark { font-size: 1.3rem !important; font-weight: 800; color: #fbbf24; }
-        /* Cifras de kilómetros ampliadas para mejorar la visibilidad de Sharif */
         input[type="number"].input-dark { font-size: 1.4rem !important; font-weight: 900; color: #22d3ee; }
 
         .lcd-clock { font-family: 'Courier New', Courier, monospace; letter-spacing: 2px; }
@@ -60,34 +59,21 @@
     <div x-show="screen === 0" x-transition:enter="transition ease-out duration-300" x-cloak class="p-6 max-w-md mx-auto flex flex-col justify-center min-h-screen text-center">
         <div class="mb-8">
             <h1 class="text-4xl font-black italic tracking-tighter text-slate-300">MED BASHA PRO</h1>
-            <p class="text-xs text-blue-400 font-bold tracking-widest uppercase mt-2">Sincronización Inteligente de Rutas</p>
+            <p class="text-xs text-blue-400 font-bold tracking-widest uppercase mt-2">Uso Personal & Sincronización</p>
         </div>
 
         <div class="glass-card p-6 rounded-3xl space-y-4 shadow-2xl border border-white/5">
-            <button @click="loginGoogle()" class="w-full p-4 bg-white text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-3 active:scale-95 transition-transform">
+            <button @click="loginGoogle()" class="w-full p-5 bg-white text-slate-900 font-black text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-3 active:scale-95 transition-transform">
                 <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                Continuar con Google
+                Sincronizar con Google
             </button>
 
-            <div class="flex items-center my-4 text-xs text-slate-500 font-bold uppercase">
+            <div class="flex items-center my-2 text-xs text-slate-500 font-bold uppercase">
                 <hr class="flex-1 border-white/10 mr-2"> O <hr class="flex-1 border-white/10 ml-2">
             </div>
 
-            <div class="space-y-2 text-left">
-                <label class="text-[10px] font-black uppercase text-slate-400">Acceso por Correo</label>
-                <input type="text" x-model="authEmail" placeholder="correo@ejemplo.com" class="input-dark text-left text-sm font-semibold text-white">
-                <input type="password" x-model="authPassword" placeholder="Contraseña segura" class="input-dark text-left text-sm font-semibold text-white">
-                <button @click="loginEmail()" class="w-full mt-2 p-3 bg-blue-600 font-black text-xs uppercase tracking-wider rounded-xl active:scale-95 transition-transform">
-                    Iniciar Sesión / Registrarme
-                </button>
-            </div>
-
-            <div class="flex items-center my-2 text-xs text-slate-500 font-bold uppercase">
-                <hr class="flex-1 border-white/10 mr-2"> <hr class="flex-1 border-white/10 ml-2">
-            </div>
-
-            <button @click="loginAnonimo()" class="w-full p-3 bg-slate-800 text-slate-300 font-black text-xs uppercase tracking-wider rounded-xl active:scale-95 transition-transform">
-                Entrar como Invitado (Anónimo)
+            <button @click="loginAnonimo()" class="w-full p-4 bg-slate-800 text-slate-300 font-black text-xs uppercase tracking-wider rounded-xl active:scale-95 transition-transform">
+                Entrar en Modo Local (Sin Cuenta)
             </button>
         </div>
         <span class="firma-footer text-[10px] text-slate-600 mt-6 block">medbasha professional suite</span>
@@ -97,7 +83,7 @@
         <header class="flex justify-between items-center mb-6">
             <div>
                 <h1 class="text-2xl font-black italic tracking-tighter" :style="'color:' + settings.colorMaestro">MED BASHA PRO</h1>
-                <p class="text-[10px] text-slate-500 uppercase font-black" x-text="isAnon ? 'Modo Invitado Remoto' : 'Conductor Registrado'"></p>
+                <p class="text-[10px] text-slate-500 uppercase font-black" x-text="isAnon ? 'Modo Local Protegido' : 'Cuenta Personal Vinculada'"></p>
             </div>
             <div class="flex items-center gap-3">
                 <span class="firma-footer text-xs">medbasha</span>
@@ -154,7 +140,7 @@
 
     <div x-show="screen === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak class="p-4 max-w-md mx-auto pb-44">
         <header class="flex items-center gap-4 mb-6">
-            <button @click="volverAlInicio()" class="p-2 bg-slate-800 rounded-full active:scale-90 transition"><i data-lucide="arrow-left"></i></button>
+            <button @click="comprobarSalidaPreventiva()" class="p-2 bg-slate-800 rounded-full active:scale-90 transition"><i data-lucide="arrow-left"></i></button>
             <div class="flex-1">
                 <h2 class="text-xl font-black uppercase tracking-tighter" x-text="form.esPartida ? 'Jornada Partida' : 'Jornada Continua'"></h2>
                 <p class="text-[10px] text-blue-400 font-bold" x-text="'Fecha: ' + fechaSeleccionada"></p>
@@ -179,7 +165,9 @@
                     <input type="number" step="1" x-model="form.kmF1" @input="calcular(); guardarBorrador()" placeholder="KM Fin" class="input-dark">
                 </div>
                 <div class="flex justify-center mt-3">
-                    <button @click="ponerHoraActual('hE1')" class="text-[9px] bg-blue-900/50 px-4 py-2 rounded-full border border-blue-500/30 font-black uppercase active:scale-95 transition">Fichar Entrada</button>
+                    <button @click="forzarGuardadoBorrador()" class="text-[10px] bg-blue-900/40 px-5 py-2.5 rounded-full border border-blue-500/40 font-black uppercase active:scale-95 transition flex items-center gap-2 text-blue-300">
+                        <i data-lucide="bookmark" class="w-3.5 h-3.5"></i> Asegurar Borrador
+                    </button>
                 </div>
             </div>
 
@@ -234,7 +222,7 @@
                 </div>
                 <button @click="guardarJornada()" 
                         :disabled="errorKm"
-                        :style="errorKm ? 'background-color: #334155' : 'background-color:' + settings.colorMaestro" 
+                        :class="errorKm ? 'bg-slate-700' : 'bg-blue-600'" 
                         class="text-white p-5 rounded-full shadow-2xl active:scale-75 transition-all duration-200">
                     <i data-lucide="save" class="w-7 h-7"></i>
                 </button>
@@ -271,7 +259,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div class="text-center">
                         <span class="block text-[8px] text-slate-500 font-black uppercase">Nocturnidad (Horas)</span>
-                        <p class="text-2xl font-black text-purple-400" x-text="stats.horasNocturnas"></p>
+                        <p class="text-2xl font-black text-purple-400" x-text="stats.hoursNocturnas"></p>
                     </div>
                     <div class="text-center border-l border-white/5">
                         <span class="block text-[8px] text-slate-500 font-black uppercase">Turnos Partidos</span>
@@ -286,47 +274,51 @@
                 <div class="space-y-2">
                     <div class="semana-header p-3 rounded-xl flex justify-between items-center">
                         <div>
-                            <span class="block text-[10px] font-black text-blue-400 uppercase" x-text="semana.rango"></span>
-                            <div class="flex gap-2 text-[8px] font-bold text-slate-400 mt-0.5">
-                                <span class="bg-blue-500/10 px-1 rounded" x-text="'H: ' + semana.totalHoras"></span>
-                                <span class="bg-green-500/10 px-1 rounded" x-text="'D: ' + semana.totalDietas"></span>
+                            <span class="block text-[11px] font-black text-blue-400 uppercase" x-text="semana.rango"></span>
+                            <div class="flex flex-wrap gap-x-2 gap-y-0.5 text-[8.5px] font-black text-slate-400 mt-1">
+                                <span class="bg-blue-500/10 px-1.5 py-0.5 rounded text-blue-400" x-text="'H: ' + semana.totalHoras"></span>
+                                <span class="bg-green-500/10 px-1.5 py-0.5 rounded text-green-400" x-text="'D: ' + semana.totalDietas"></span>
+                                <span class="bg-cyan-500/10 px-1.5 py-0.5 rounded text-cyan-400" x-text="'KM: ' + semana.totalKm"></span>
+                                <span class="bg-purple-500/10 px-1.5 py-0.5 rounded text-purple-400" x-text="'Noc: ' + semana.totalNocturnas"></span>
+                                <span class="bg-orange-500/10 px-1.5 py-0.5 rounded text-orange-400" x-text="'Part: ' + semana.totalPartidas"></span>
+                                <span class="bg-red-500/10 px-1.5 py-0.5 rounded text-red-400" x-text="'Fest: ' + semana.totalFestivos"></span>
                             </div>
                         </div>
-                        <button @click="sincronizarConSheets(semana.registros)" class="bg-green-600/50 text-white px-2 py-1.5 rounded-lg font-black text-[8px] uppercase flex items-center gap-1 active:scale-90 transition">
+                        <button @click="sincronizarConSheets(semana.registros)" class="bg-green-600/50 text-white px-2 py-1.5 rounded-lg font-black text-[8px] uppercase flex items-center gap-1 active:scale-90 transition shrink-0">
                             <i data-lucide="cloud-upload" class="w-3 h-3"></i> Subir
                         </button>
                     </div>
 
                     <div class="glass-card rounded-2xl overflow-hidden border border-white/5">
-                        <table class="w-full text-center">
-                            <thead class="bg-black/20 text-[10px] text-slate-500 uppercase">
+                        <table class="w-full text-center table-fixed">
+                            <thead class="bg-black/20 text-[9px] text-slate-500 uppercase tracking-tighter">
                                 <tr>
-                                    <th class="p-2 text-left">Día</th>
-                                    <th>Bus</th>
-                                    <th>H.</th>
-                                    <th>Die.</th>
-                                    <th>Par.</th>
-                                    <th>Noc.</th>
-                                    <th>Fes.</th>
-                                    <th></th>
+                                    <th class="p-2 text-left w-[24%]">Día</th>
+                                    <th class="w-[14%]">Bus</th>
+                                    <th class="w-[13%]">H.</th>
+                                    <th class="w-[11%]">Die.</th>
+                                    <th class="w-[11%]">Par.</th>
+                                    <th class="w-[13%]">Noc.</th>
+                                    <th class="w-[11%]">Fes.</th>
+                                    <th class="w-[10%]"></th>
                                 </tr>
                             </thead>
-                            <tbody class="text-[12px] font-bold divide-y divide-white/5">
+                            <tbody class="text-[11.5px] font-bold divide-y divide-white/5">
                                 <template x-for="item in semana.registros" :key="item.id">
                                     <tr class="transition hover:bg-white/5">
-                                        <td class="p-2 text-left flex items-center gap-1.5 cursor-pointer" @click="cargarRegistro(item)">
-                                            <div :class="item.esPartida ? 'bg-orange-500' : 'bg-blue-400'" class="w-1.5 h-1.5 rounded-full shrink-0"></div>
+                                        <td class="p-2 text-left flex items-center gap-1 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap" @click="cargarRegistro(item)">
+                                            <div :class="item.esPartida ? 'bg-orange-500' : 'bg-blue-400'" class="w-2 h-2 rounded-full shrink-0"></div>
                                             <span x-text="item.fecha"></span>
                                         </td>
-                                        <td x-text="item.bus"></td>
+                                        <td x-text="item.bus" class="truncate"></td>
                                         <td x-text="item.horas"></td>
                                         <td x-text="item.dietas" class="text-green-400"></td>
                                         <td x-text="item.esPartida ? '1' : '-'" class="text-orange-400"></td>
                                         <td x-text="getMinutosNocturnos(item) > 0 ? formatMins(getMinutosNocturnos(item)) : '-'" class="text-purple-400 text-[10px]"></td>
                                         <td x-text="item.esFestivo ? '1' : '-'" class="text-red-400"></td>
                                         <td class="p-1">
-                                            <button @click="borrarRegistro(item.id)" class="text-red-500/30 p-2 active:scale-75 transition">
-                                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                            <button @click="borrarRegistro(item.id)" class="text-red-500/40 p-1.5 active:scale-75 transition flex items-center justify-center mx-auto">
+                                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -334,6 +326,11 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </template>
+            <template x-if="semanasAgrupadas.length === 0">
+                <div class="glass-card p-6 rounded-2xl text-center text-xs text-slate-500 italic">
+                    No hay turnos registrados en el mes de <span x-text="monthNames[currentMonth]"></span>
                 </div>
             </template>
         </div>
@@ -373,11 +370,6 @@
                 </button>
             </div>
 
-            <div class="glass-card p-5 rounded-3xl border-l-4 border-green-500">
-                <label class="text-[10px] font-black text-green-500 uppercase block mb-3">Google Sheets API URL</label>
-                <input type="text" x-model="settings.sheetUrl" @change="saveSett()" autocomplete="off" autocorrect="off" spellcheck="false" class="bg-slate-900 border border-white/10 p-4 rounded-xl font-mono text-[9px] w-full text-slate-300 outline-none focus:border-green-500 transition-colors">
-            </div>
-
             <div class="glass-card p-5 rounded-3xl">
                 <label class="text-[10px] font-black text-slate-500 block mb-4 uppercase">Tamaño Texto</label>
                 <input type="range" x-model="settings.fontSize" @input="saveSett()" min="12" max="22" class="w-full h-1.5 bg-slate-700 rounded-lg accent-blue-500">
@@ -393,13 +385,11 @@
             </div>
             
             <button @click="logout()" class="w-full p-4 text-[10px] font-black uppercase text-amber-500 bg-amber-500/10 rounded-2xl active:scale-95 transition">Cerrar Sesión Activa</button>
-            
             <button @click="confirmarReset()" class="w-full p-4 text-[10px] font-black uppercase text-red-500 bg-red-500/10 rounded-2xl active:scale-95 transition">Resetear Datos Locales</button>
         </div>
     </div>
 
     <script>
-        // INYECCIÓN DIRECTA NATIVA DE CREDENCIALES (SEGURO Y TRANSPARENTE)
         let db = null;
         let esSincronizadoEnNube = false;
         
@@ -424,8 +414,6 @@
                 screen: 0, 
                 userId: 'local',
                 isAnon: false,
-                authEmail: '',
-                authPassword: '',
                 
                 currentMonth: new Date().getMonth(), 
                 currentYear: new Date().getFullYear(),
@@ -463,18 +451,19 @@
                     this.calcularTotales();
                     setInterval(() => this.updateClock(), 1000); 
 
-                    // VIGILANTE DE INICIO DE SESIÓN AUTOMÁTICO
                     if (esSincronizadoEnNube) {
                         firebase.auth().onAuthStateChanged((user) => {
                             if (user) {
                                 this.userId = user.uid;
                                 this.isAnon = user.isAnonymous;
                                 this.screen = 1; 
+                                // CORRECCIÓN: Forzamos el inicio del sync y actualizamos la variable de control
                                 this.firebaseIniciado = false;
                                 this.iniciarSyncAutomatico();
-                                this.notificar("Nube Sincronizada con Éxito");
+                                this.firebaseIniciado = true;
                             } else {
                                 this.screen = 0; 
+                                this.firebaseIniciado = false;
                             }
                         });
                     } else {
@@ -490,7 +479,7 @@
                                 this.fechaSeleccionada = datosBorrador.fechaBorrador;
                                 this.screen = 2; 
                                 this.calcular(); 
-                                this.notificar("Borrador recuperado", false);
+                                this.notificar("Borrador recuperado con éxito", false);
                             }
                         } catch (e) { }
                     }
@@ -498,52 +487,28 @@
                 },
 
                 loginGoogle() {
-                    if (!esSincronizadoEnNube) return this.notificar("Error de inicialización de red", true);
+                    if (!esSincronizadoEnNube) return this.notificar("Error de red", true);
                     const provider = new firebase.auth.GoogleAuthProvider();
                     firebase.auth().signInWithPopup(provider)
                         .then((result) => {
                             this.userId = result.user.uid;
                             this.isAnon = false;
                             this.screen = 1;
+                            this.notificar("Sesión iniciada con Google");
                         })
-                        .catch((e) => this.notificar("Error Google: " + e.message, true));
-                },
-
-                loginEmail() {
-                    if (!esSincronizadoEnNube) return this.notificar("Error de inicialización de red", true);
-                    if (!this.authEmail || !this.authPassword) return this.notificar("Completa los datos", true);
-
-                    firebase.auth().signInWithEmailAndPassword(this.authEmail, this.authPassword)
-                        .then((result) => {
-                            this.userId = result.user.uid;
-                            this.isAnon = false;
-                            this.screen = 1;
-                        })
-                        .catch((error) => {
-                            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-                                firebase.auth().createUserWithEmailAndPassword(this.authEmail, this.authPassword)
-                                    .then((result) => {
-                                        this.userId = result.user.uid;
-                                        this.isAnon = false;
-                                        this.screen = 1;
-                                        this.notificar("Nueva cuenta registrada");
-                                    })
-                                    .catch((e) => this.notificar("Error de registro: " + e.message, true));
-                            } else {
-                                this.notificar("Error: " + error.message, true);
-                            }
-                        });
+                        .catch((e) => this.notificar("Error: " + e.message, true));
                 },
 
                 loginAnonimo() {
-                    if (!esSincronizadoEnNube) return this.notificar("Error de inicialización de red", true);
+                    if (!esSincronizadoEnNube) return this.notificar("Error de red", true);
                     firebase.auth().signInAnonymously()
                         .then((result) => {
                             this.userId = result.user.uid;
                             this.isAnon = true;
                             this.screen = 1;
+                            this.notificar("Modo Local Activado");
                         })
-                        .catch((e) => this.notificar("Error de Invitado: " + e.message, true));
+                        .catch((e) => this.notificar("Error: " + e.message, true));
                 },
 
                 logout() {
@@ -553,16 +518,15 @@
                             this.historial = [];
                             this.saveHist();
                             this.screen = 0;
-                            this.notificar("Sesión cerrada");
+                            this.firebaseIniciado = false;
+                            this.notificar("Sesión cerrada correctamente");
                         });
                     }
                 },
 
                 iniciarSyncAutomatico() {
-                    if (!db || this.firebaseIniciado || this.userId === 'local') return;
-                    this.firebaseIniciado = true;
+                    if (!db || this.userId === 'local') return;
 
-                    // Carpeta privada automatizada por UID de usuario independiente
                     const nodoUser = db.ref('jornadas/' + this.userId);
 
                     nodoUser.on('child_added', (snapshot) => {
@@ -634,6 +598,16 @@
                     localStorage.setItem('bus_borrador_seguridad', JSON.stringify(copia));
                 },
 
+                forzarGuardadoBorrador() {
+                    this.guardarBorrador();
+                    this.notificar("¡Borrador asegurado correctamente!", false);
+                },
+
+                // CORRECCIÓN: El botón "Volver" ahora te devuelve directamente al inicio sin condiciones ni alertas
+                comprobarSalidaPreventiva() {
+                    this.volverAlInicio();
+                },
+
                 updateClock() { 
                     this.timeNow = new Date().toLocaleTimeString('es-ES', { hour12: false }); 
                 },
@@ -648,6 +622,7 @@
                     for (let i = 1; i <= days; i++) {
                         this.daysInMonth.push({ num: i, isToday: new Date().toDateString() === new Date(this.currentYear, this.currentMonth, i).toDateString() });
                     }
+                    this.calcularTotales();
                 },
 
                 formatearFecha(dia) { return `${dia.toString().padStart(2,'0')}/${(this.currentMonth + 1).toString().padStart(2,'0')}`; },
@@ -678,12 +653,6 @@
                     this.screen = 2; this.calcular(); this.actualizarIconos();
                 },
 
-                ponerHoraActual(campo) {
-                    const ahora = new Date();
-                    this.form[campo] = `${String(ahora.getHours()).padStart(2, '0')}:${String(ahora.getMinutes()).padStart(2, '0')}`;
-                    this.calcular(); this.guardarBorrador();
-                },
-
                 calcular() {
                     const toM = (t) => { 
                         if(!t) return null; 
@@ -710,7 +679,6 @@
                     
                     this.errorKm = (parseInt(this.form.kmF1) < parseInt(this.form.kmI1)) || (this.form.esPartida && (parseInt(this.form.kmF2) < parseInt(this.form.kmI2)));
 
-                    // LÓGICA DE DIETAS CORREGIDA EXCLUSIVAMENTE CON LAS REGLAS DE MENORCA
                     let autoComida = false;
                     let autoCena = false;
                     let evaluarTramo = null;
@@ -720,20 +688,10 @@
                             evaluarTramo = { duracionMin: m1, finMin: s1 };
                         }
                     } else {
-                        // REGLA JORNADA PARTIDA: La dieta corresponde a la jornada más larga
                         if (m1 >= m2 && m1 > 0) {
                             evaluarTramo = { duracionMin: m1, finMin: s1 };
                         } else if (m2 > m1) {
                             evaluarTramo = { duracionMin: m2, finMin: s2 };
-                        }
-                        
-                        // REGLA DE ADVERTENCIA: Control del corte máximo de 2 horas entre tramos (120 minutos)
-                        if (s1 !== null && e2 !== null) {
-                            let minutosCorte = (e2 < s1) ? (e2 + 1440) - s1 : e2 - s1;
-                            if (minutosCorte > 120) {
-                                // Aquí se registra que el corte excede el máximo permitido por convenio
-                                console.log("Advertencia de convenio: El corte entre tramos supera las 2 horas.");
-                            }
                         }
                     }
 
@@ -741,17 +699,13 @@
                         const { duracionMin, finMin } = evaluarTramo;
                         const horasTrabajadas = duracionMin / 60;
 
-                        // FRANJA DE MAÑANA AJUSTADA: De 15:00 o 15:30 hasta las 17:00 (1020 minutos)
-                        // Regla 1: Trabajar 9h o más Y terminar entre las 15:00 (900 min) y las 17:00 (1020 min)
                         if (horasTrabajadas >= 9 && finMin >= 900 && finMin <= 1020) {
                             autoComida = true;
                         }
-                        // Regla 2: Trabajar 6h o más Y terminar entre las 15:30 (930 min) y las 17:00 (1020 min)
                         if (horasTrabajadas >= 6 && finMin >= 930 && finMin <= 1020) {
                             autoComida = true;
                         }
 
-                        // LÓGICA DE LA CENA (Terminar a las 23:00 o después)
                         const esFinCenaOmasTarde = (finMin >= 1380 || finMin <= 360); 
                         if (esFinCenaOmasTarde) {
                             autoCena = true;
@@ -766,10 +720,11 @@
                 },
 
                 guardarJornada() {
-                    if(!this.form.bus1) return this.notificar("Falta el número de BUS", true);
-                    if(this.form.hS1 && !this.form.hE1) return this.notificar("Hora de fin sin inicio", true);
-                    if(this.form.esPartida && this.form.hS2 && !this.form.hE2) return this.notificar("Tramo 2: Fin sin inicio", true);
-                    if(this.errorKm) return this.notificar("Error en los Kilómetros", true);
+                    // CORRECCIÓN: El control estricto del BUS se activa única y exclusivamente al hacer clic aquí
+                    if(!this.form.bus1) return this.notificar("⚠️ Falta el número de BUS", true);
+                    if(this.form.hS1 && !this.form.hE1) return this.notificar("⚠️ Hora de fin sin inicio", true);
+                    if(this.form.esPartida && this.form.hS2 && !this.form.hE2) return this.notificar("⚠️ Tramo 2: Fin sin inicio", true);
+                    if(this.errorKm) return this.notificar("⚠️ Error en los Kilómetros", true);
 
                     const reg = {
                         id: this.form.id || Date.now(), 
@@ -788,13 +743,12 @@
                         db.ref('jornadas/' + this.userId + '/' + reg.id).set(reg)
                             .then(() => {
                                 this.notificar("¡Sincronizado en tu Nube Privada!");
-                                if(this.settings.sheetUrl) this.sincronizarConSheets([reg], true);
                             })
                             .catch(e => {
-                                this.notificar("Error Firebase: " + (e.message || e.code || "Desconectado"), true);
+                                this.notificar("Guardado local (Sin conexión)", true);
                             });
                     } else {
-                        this.notificar("Guardado local (Sin cuenta activa)", false);
+                        this.notificar("Guardado en Memoria Local", false);
                     }
 
                     const idx = this.historial.findIndex(h => h.fecha === this.fechaSeleccionada);
@@ -805,6 +759,13 @@
                     localStorage.removeItem('bus_borrador_seguridad');
                     this.screen = 1; 
                     this.actualizarIconos();
+                },
+
+                notificar(msg, isError = false) {
+                    this.toast.msg = msg;
+                    this.toast.isError = isError;
+                    this.toast.visible = true;
+                    setTimeout(() => { this.toast.visible = false; }, 3000);
                 },
 
                 getWeekNumber(d) {
@@ -823,43 +784,17 @@
                     else { inicio = new Date(y, m - 1, 16); fin = new Date(y, m, 15); }
                     this.cicloLabel = `Ciclo: 16/${inicio.getMonth()+1} al 15/${fin.getMonth()+1}`;
 
-                    let filtrados = this.historial.filter(h => {
+                    let filtradosCiclo = this.historial.filter(h => {
                         const [diaReg, mesReg] = h.fecha.split('/').map(Number);
                         let añoReg = y;
                         if (mesReg === 12 && inicio.getMonth() === 11) añoReg = inicio.getFullYear();
                         if (mesReg === 1 && fin.getMonth() === 0) añoReg = fin.getFullYear();
                         const fReg = new Date(añoReg, mesReg - 1, diaReg);
                         return fReg >= inicio && fReg <= fin;
-                    }).sort((a,b) => b.id - a.id);
-
-                    const grupos = {};
-                    filtrados.forEach(h => {
-                        const[dia, mes] = h.fecha.split('/').map(Number);
-                        const numSemana = this.getWeekNumber(new Date(y, mes - 1, dia));
-                        
-                        if (!grupos[numSemana]) {
-                            grupos[numSemana] = { registros:[], totalHorasMins: 0, totalKm: 0, totalDietas: 0, totalPartidas: 0, totalNocturnas: 0 };
-                        }
-                        
-                        grupos[numSemana].registros.push(h);
-                        let [hh, mm] = h.horas.split(':').map(Number);
-                        grupos[numSemana].totalHorasMins += (hh * 60 + mm);
-                        grupos[numSemana].totalKm += h.km;
-                        grupos[numSemana].totalDietas += h.dietas;
-                        if(h.esPartida) grupos[numSemana].totalPartidas++;
                     });
 
-                    this.semanasAgrupadas = Object.keys(grupos).map(key => {
-                        const g = grupos[key];
-                        return { 
-                            ...g, 
-                            rango: `Semana ${key}`, 
-                            totalHoras: `${Math.floor(g.totalHorasMins/60)}:${(g.totalHorasMins%60).toString().padStart(2,'0')}` 
-                        };
-                    }).sort((a, b) => b.registros[0].id - a.registros[0].id);
-
                     let mt = 0, kt = 0, dt = 0, pt = 0, ntMins = 0;
-                    filtrados.forEach(h => {
+                    filtradosCiclo.forEach(h => {
                         let [hh,mm] = h.horas.split(':').map(Number); 
                         mt += (hh * 60 + mm); 
                         kt += h.km; 
@@ -875,27 +810,60 @@
                         numPartidas: pt, 
                         hoursNocturnas: this.formatMins(ntMins)
                     };
+
+                    const mesFiltroCadena = String(this.currentMonth + 1).padStart(2, '0');
+                    let registrosMesSeleccionado = this.historial.filter(h => h.fecha.split('/')[1] === mesFiltroCadena);
+
+                    const gruposSemanales = {};
+                    registrosMesSeleccionado.forEach(h => {
+                        const [dia, mes] = h.fecha.split('/').map(Number);
+                        const numSemana = this.getWeekNumber(new Date(this.currentYear, mes - 1, dia));
+                        
+                        if (!gruposSemanales[numSemana]) {
+                            gruposSemanales[numSemana] = { 
+                                registros: [], 
+                                totalMins: 0, 
+                                totalKm: 0, 
+                                totalDietas: 0, 
+                                totalPartidas: 0, 
+                                totalNocturnasMins: 0,
+                                totalFestivos: 0
+                            };
+                        }
+                        
+                        gruposSemanales[numSemana].registros.push(h);
+                        let [hh, mm] = h.horas.split(':').map(Number);
+                        gruposSemanales[numSemana].totalMins += (hh * 60 + mm);
+                        gruposSemanales[numSemana].totalKm += h.km;
+                        gruposSemanales[numSemana].totalDietas += h.dietas;
+                        if(h.esPartida) gruposSemanales[numSemana].totalPartidas++;
+                        if(h.esFestivo) gruposSemanales[numSemana].totalFestivos++;
+                        gruposSemanales[numSemana].totalNocturnasMins += this.getMinutosNocturnos(h);
+                    });
+
+                    this.semanasAgrupadas = Object.keys(gruposSemanales).map(key => {
+                        const g = gruposSemanales[key];
+                        return {
+                            rango: `Semana ${key}`,
+                            registros: g.registros.sort((a,b) => b.id - a.id),
+                            totalHoras: `${Math.floor(g.totalMins/60)}:${(g.totalMins%60).toString().padStart(2,'0')}`,
+                            totalDietas: g.totalDietas,
+                            totalKm: g.totalKm,
+                            totalPartidas: g.totalPartidas,
+                            totalFestivos: g.totalFestivos,
+                            totalNocturnas: this.formatMins(g.totalNocturnasMins)
+                        };
+                    }).sort((a, b) => b.registros[0].id - a.registros[0].id);
                 },
 
                 getRegistrosMesActual() {
-                    const hoy = new Date();
-                    const d = hoy.getDate(), m = hoy.getMonth(), y = hoy.getFullYear();
-                    let inicio, fin;
-                    if (d >= 16) { inicio = new Date(y, m, 16); fin = new Date(y, m + 1, 15); } 
-                    else { inicio = new Date(y, m - 1, 16); fin = new Date(y, m, 15); }
-                    
-                    return this.historial.filter(h => {
-                        const [diaReg, mesReg] = h.fecha.split('/').map(Number);
-                        let añoReg = y;
-                        if (mesReg === 12 && inicio.getMonth() === 11) añoReg = inicio.getFullYear();
-                        if (mesReg === 1 && fin.getMonth() === 0) añoReg = fin.getFullYear();
-                        return (new Date(añoReg, mesReg - 1, diaReg) >= inicio && new Date(añoReg, mesReg - 1, diaReg) <= fin);
-                    }).sort((a,b) => a.id - b.id);
+                    const mesFiltroCadena = String(this.currentMonth + 1).padStart(2, '0');
+                    return this.historial.filter(h => h.fecha.split('/')[1] === mesFiltroCadena).sort((a,b) => a.id - b.id);
                 },
 
                 exportarMensualADrive() {
                     let filtrados = this.getRegistrosMesActual();
-                    if(filtrados.length === 0) return this.notificar("No hay datos para exportar", true);
+                    if(filtrados.length === 0) return this.notificar("No hay datos en este mes", true);
                     
                     let csv = "Fecha,Bus,Horas,Dietas,Horas Nocturnas,Kilometros,Partida,Festivo\n";
                     filtrados.forEach(r => {
@@ -904,7 +872,7 @@
                     });
 
                     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                    const file = new File([blob], `Nomina_${this.cicloLabel.replace(/[^a-zA-Z0-9]/g, '_')}.csv`, { type: 'text/csv' });
+                    const file = new File([blob], `Nomina_Mes_${this.currentMonth+1}.csv`, { type: 'text/csv' });
 
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
                         navigator.share({ files: [file], title: 'Nómina', text: 'Resumen de nómina' }).catch(e => console.log(e));
@@ -918,7 +886,7 @@
 
                 generarPDFDescargaDirecta() {
                     let filtrados = this.getRegistrosMesActual();
-                    if(filtrados.length === 0) return this.notificar("No hay datos para exportar", true);
+                    if(filtrados.length === 0) return this.notificar("No hay datos en este mes", true);
 
                     let trs = '';
                     filtrados.forEach(r => {
@@ -941,7 +909,7 @@
                         <html>
                         <head>
                             <meta charset="UTF-8">
-                            <title>Nomina_${this.cicloLabel}</title>
+                            <title>Nomina_Mes</title>
                             <style>
                                 body { font-family: system-ui, sans-serif; padding: 25px; color: #1e293b; background-color: #ffffff; }
                                 h1 { text-align: center; color: #0f172a; font-size: 22px; border-bottom: 3px solid #707070; padding-bottom: 12px; margin-bottom: 20px; text-transform: uppercase; }
@@ -949,16 +917,10 @@
                                 th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: center; }
                                 th { background-color: #f8fafc; color: #475569; font-weight: 800; text-transform: uppercase; font-size: 11px; }
                                 tr:nth-child(even) { background-color: #f1f5f9; }
-                                .resumen-caja { margin-top: 25px; border: 1px solid #cbd5e1; padding: 15px; background-color: #f8fafc; border-radius: 12px; }
-                                .resumen-caja h2 { margin-top: 0; font-size: 16px; color: #0f172a; border-b: 1px solid #cbd5e1; padding-bottom: 5px; }
-                                .grid { display: flex; flex-wrap: wrap; justify-content: space-between; }
-                                .grid div { width: 48%; margin-bottom: 8px; font-weight: bold; font-size: 13px; }
-                                .grid span { font-weight: 500; color: #475569; }
-                                .footer { text-align: right; margin-top: 35px; font-size: 11px; color: #94a3b8; font-style: italic; }
                             </style>
                         </head>
                         <body>
-                            <h1>Resumen Nómina - ${this.cicloLabel}</h1>
+                            <h1>Resumen Turnos - Mes ${this.monthNames[this.currentMonth]}</h1>
                             <table>
                                 <thead>
                                     <tr>
@@ -976,50 +938,19 @@
                                     ${trs}
                                 </tbody>
                             </table>
-                            <div class="resumen-caja">
-                                <h2>Totales del Ciclo Acumulados</h2>
-                                <div class="grid">
-                                    <div>Horas Totales: <span>${this.stats.hTotales}</span></div>
-                                    <div>Dietas Registradas: <span>${this.stats.numDietas}</span></div>
-                                    <div>Turnos Partidos: <span>${this.stats.numPartidas}</span></div>
-                                    <div>Horas Nocturnidad: <span>${this.stats.hoursNocturnas}</span></div>
-                                    <div>Kilómetros Totales: <span>${this.stats.kmTotales}</span></div>
-                                </div>
-                            </div>
-                            <p class="footer">Documento Oficial Generado por MED BASHA PRO - medbasha</p>
+                            <p style="text-align:right; font-size:11px; color:#94a3b8; font-style:italic; margin-top:30px;">MED BASHA PRO - medbasha</p>
                         </body>
                         </html>
                     `;
 
                     const blob = new Blob([html], { type: 'text/html;charset=utf-8;' });
-                    const file = new File([blob], `Nomina_${this.cicloLabel.replace(/[^a-zA-Z0-9]/g, '_')}.html`, { type: 'text/html' });
-
-                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                        navigator.share({ files: [file], title: 'Resumen PDF Nómina', text: 'Mi informe mensual' }).catch(e => console.log(e));
-                    } else {
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = `Nomina_${this.fechaSeleccionada.replace('/','_')}_MBP.html`;
-                        a.click(); 
-                        URL.revokeObjectURL(url);
-                        this.notificar("Informe descargado en local");
-                    }
-                },
-
-                sincronizarConSheets(registros, modoOculto = false) {
-                    if(!this.settings.sheetUrl) { 
-                        if(!modoOculto) this.notificar("Falta URL de Google Sheets", true); 
-                        return; 
-                    }
-                    const dataParaEnviar = registros.map(r => ({
-                        fecha: r.fecha, bus: r.bus, hora: r.horas, dieta: r.dietas,
-                        nocturna: this.formatMins(this.getMinutosNocturnos(r)), 
-                        kilometros: r.km, plusPartido: r.esPartida ? 'SÍ' : 'NO'
-                    }));
-                    fetch(this.settings.sheetUrl, { method: 'POST', body: JSON.stringify(dataParaEnviar) })
-                    .then(() => { if(!modoOculto) this.notificar("Enviado a Google Sheets"); })
-                    .catch(() => { if(!modoOculto) this.notificar("Error al conectar con Sheets", true); });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `Nomina_${this.monthNames[this.currentMonth]}_MBP.html`;
+                    a.click(); 
+                    URL.revokeObjectURL(url);
+                    this.notificar("Informe descargado");
                 },
 
                 borrarRegistro(id) { 
